@@ -29,92 +29,13 @@ app.post("/webhook", function (req, res) {
                     "text": "長岡で遊ぶ場所を教えて"
                 },
 
+
                 {
-                    "type": "bubble",
-                    "hero": {
-                        "type": "image",
-                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-                        "size": "full",
-                        "aspectRatio": "20:13",
-                        "aspectMode": "cover",
-                        "action": {
-                            "type": "uri",
-                            "uri": "http://linecorp.com/"
-                        }
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "年代を教えて下さい",
-                                "weight": "bold",
-                                "size": "xl",
-                                "margin": "none",
-                                "align": "center"
-                            },
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "margin": "md",
-                                "contents": []
-                            }
-                        ],
-                        "borderColor": "#696969",
-                        "cornerRadius": "30px"
-                    },
-                    "footer": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "button",
-                                "style": "link",
-                                "height": "sm",
-                                "action": {
-                                    "type": "postback",
-                                    "label": "10~20代",
-                                    "data": "low"
-                                }
-                            },
-                            {
-                                "type": "button",
-                                "style": "link",
-                                "height": "sm",
-                                "action": {
-                                    "type": "postback",
-                                    "label": "30~40代",
-                                    "data": "middle"
-                                }
-                            },
-                            {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [],
-                                "margin": "sm"
-                            },
-                            {
-                                "type": "button",
-                                "action": {
-                                    "type": "postback",
-                                    "label": "50~60代",
-                                    "data": "high"
-                                }
-                            },
-                            {
-                                "type": "button",
-                                "action": {
-                                    "type": "postback",
-                                    "label": "60代以上",
-                                    "data": "age60"
-                                }
-                            }
-                        ],
-                        "flex": 0
-                    }
+                    "type": "text",
+                    "text": "いいよー"
                 }
+
+                
             ]
         })
 
