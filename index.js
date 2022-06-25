@@ -107,7 +107,7 @@ app.post("/webhook", function (req, res) {
                                 }
                             }
                         ],
-                        "flex": 0
+                        //"flex": 0
                     }
                 }
             ]
