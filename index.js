@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     // ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    if (req.body.events[0].type === "bubble") {
+    
         // 文字列化したメッセージデータ
         const dataString = JSON.stringify({
             replyToken: req.body.events[0].replyToken,
@@ -106,7 +106,7 @@ app.post("/webhook", function (req, res) {
         // データを送信
         request.write(dataString)
         request.end()
-    }
+    
 })
 
 app.listen(PORT, () => {
