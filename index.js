@@ -30,6 +30,7 @@ app.post("/webhook", function (req, res) {
                 "altText": "this is a flex message",
                 "contents": {
 
+
                     "type": "bubble",
                     "hero": {
                         "type": "image",
@@ -76,7 +77,8 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "10~20代",
-                                    "data": "low"
+                                    "data": "low",
+                                    "displayText": "10~20代"
                                 }
                             },
                             {
@@ -86,7 +88,8 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "30~40代",
-                                    "data": "middle"
+                                    "data": "middle",
+                                    "displayText": "30~40代"
                                 }
                             },
                             {
@@ -100,7 +103,8 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "50~60代",
-                                    "data": "high"
+                                    "data": "high",
+                                    "displayText": "50~60代"
                                 }
                             },
                             {
@@ -108,47 +112,50 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "60代以上",
-                                    "data": "age60"
+                                    "data": "age60",
+                                    "displayText": "60代以上"
                                 }
                             }
                         ],
                         "flex": 0
                     }
                 }
+
+            }
             }
         ]
+})
+
+// リクエストヘッダー
+const headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + TOKEN
+}
+
+// リクエストに渡すオプション
+const webhookOptions = {
+    "hostname": "api.line.me",
+    "path": "/v2/bot/message/reply",
+    "method": "POST",
+    "headers": headers,
+    "body": dataString
+}
+
+// リクエストの定義
+const request = https.request(webhookOptions, (res) => {
+    res.on("data", (d) => {
+        process.stdout.write(d)
     })
+})
 
-    // リクエストヘッダー
-    const headers = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + TOKEN
-    }
+// エラーをハンドル
+request.on("error", (err) => {
+    console.error(err)
+})
 
-    // リクエストに渡すオプション
-    const webhookOptions = {
-        "hostname": "api.line.me",
-        "path": "/v2/bot/message/reply",
-        "method": "POST",
-        "headers": headers,
-        "body": dataString
-    }
-
-    // リクエストの定義
-    const request = https.request(webhookOptions, (res) => {
-        res.on("data", (d) => {
-            process.stdout.write(d)
-        })
-    })
-
-    // エラーをハンドル
-    request.on("error", (err) => {
-        console.error(err)
-    })
-
-    // データを送信
-    request.write(dataString)
-    request.end()
+// データを送信
+request.write(dataString)
+request.end()
 
 })
 
