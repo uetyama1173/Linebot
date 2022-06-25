@@ -122,9 +122,9 @@ app.post("/webhook", function (req, res) {
                 }
 
             }
-            }
+            
         ]
-})
+}   )
 
 // リクエストヘッダー
 const headers = {
