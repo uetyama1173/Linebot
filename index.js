@@ -2,6 +2,27 @@ const https = require("https")
 const express = require("express")
 const app = express()
 
+//postgresqlを接続するコマンド
+const { Client } = require('pg');
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+        console.log(JSON.stringify(row));
+    }
+    client.end();
+});
+//ここまで
+
 const PORT = process.env.PORT || 3000
 const TOKEN = process.env.LINE_ACCESS_TOKEN
 
@@ -122,40 +143,40 @@ app.post("/webhook", function (req, res) {
                 }
 
             }
-            
+
         ]
-}   )
-
-// リクエストヘッダー
-const headers = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + TOKEN
-}
-
-// リクエストに渡すオプション
-const webhookOptions = {
-    "hostname": "api.line.me",
-    "path": "/v2/bot/message/reply",
-    "method": "POST",
-    "headers": headers,
-    "body": dataString
-}
-
-// リクエストの定義
-const request = https.request(webhookOptions, (res) => {
-    res.on("data", (d) => {
-        process.stdout.write(d)
     })
-})
 
-// エラーをハンドル
-request.on("error", (err) => {
-    console.error(err)
-})
+    // リクエストヘッダー
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + TOKEN
+    }
 
-// データを送信
-request.write(dataString)
-request.end()
+    // リクエストに渡すオプション
+    const webhookOptions = {
+        "hostname": "api.line.me",
+        "path": "/v2/bot/message/reply",
+        "method": "POST",
+        "headers": headers,
+        "body": dataString
+    }
+
+    // リクエストの定義
+    const request = https.request(webhookOptions, (res) => {
+        res.on("data", (d) => {
+            process.stdout.write(d)
+        })
+    })
+
+    // エラーをハンドル
+    request.on("error", (err) => {
+        console.error(err)
+    })
+
+    // データを送信
+    request.write(dataString)
+    request.end()
 
 })
 
