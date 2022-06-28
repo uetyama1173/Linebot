@@ -43,22 +43,23 @@ app.post("/webhook", function (req, res) {
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
 
- 
-            // Get key-value pairs.
-    const data = object.get("data");
 
-    console.log(data);
+    // Get key-value pairs.
 
-    
-/*     if (postback.data = young) {
-        console.log(req.body.events[0].type === "message2")
-    } else if (postback.data = middle) {
-        console.log(req.body.events[0].type === "message2")
-    } else if (postback.data = high) {
-        console.log(req.body.events[0].type === "message2")
-    } else if (postback.data = aged) {
-        console.log(req.body.events[0].type === "message2")
-    } */
+
+
+
+
+
+    /*     if (postback.data = young) {
+            console.log(req.body.events[0].type === "message2")
+        } else if (postback.data = middle) {
+            console.log(req.body.events[0].type === "message2")
+        } else if (postback.data = high) {
+            console.log(req.body.events[0].type === "message2")
+        } else if (postback.data = aged) {
+            console.log(req.body.events[0].type === "message2")
+        } */
 
 
     // 文字列化したメッセージデータ
