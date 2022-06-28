@@ -40,8 +40,8 @@ app.get("/", (req, res) => {
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     // ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    console.log(req.body.events[0].type === "message")
-    console.log(postback.data)
+    console.log(req.body.events[0].type === "message")    
+    console.log(req.body.events)
     // 文字列化したメッセージデータ
     const dataString = JSON.stringify({
         replyToken: req.body.events[0].replyToken,
