@@ -42,7 +42,7 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     const age = console.log(req.body.events[0])
-    if (postback.data = young) {
+/*     if (postback.data = young) {
         console.log(req.body.events[0].type === "message2")
     } else if (postback.data = middle) {
         console.log(req.body.events[0].type === "message2")
@@ -50,7 +50,7 @@ app.post("/webhook", function (req, res) {
         console.log(req.body.events[0].type === "message2")
     } else if (postback.data = aged) {
         console.log(req.body.events[0].type === "message2")
-    }
+    } */
 
 
     // 文字列化したメッセージデータ
