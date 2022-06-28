@@ -49,8 +49,8 @@ app.post("/webhook", function (req, res) {
 
 
 
-    const json_count = Object.keys(obj).length 
-    console.log(json_count)
+    const json_count = Object.keys(obj).length ;
+    console.log(json_count);
 
 
     // Get key-value pairs.
