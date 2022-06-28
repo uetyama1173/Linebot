@@ -17,7 +17,7 @@ client.connect();
 client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
     if (err) throw err;
     for (let row of res.rows) {
-        console.log(JSON.stringify(row));
+        //.log(JSON.stringify(row));
     }
     client.end();
 });
@@ -43,15 +43,15 @@ app.post("/webhook", function (req, res) {
     console.log(req.body.events[0].type === "message")
     const age = console.log(req.body.events[0])
     console.log(postback.data)
-    if (data = young) {
-        console.log(req.body.events[0].type === "message2")
-    } else if (data = middle) {
-        console.log(req.body.events[0].type === "message2")
-    } else if (data = high) {
-        console.log(req.body.events[0].type === "message2")
-    } else if (data = aged) {
-        console.log(req.body.events[0].type === "message2")
-    }
+    //if (data = young) {
+        //console.log(req.body.events[0].type === "message2")
+    //} //else if (data = middle) {
+        //.log(req.body.events[0].type === "message2")
+   // } //else if (data = high) {
+        //.log(req.body.events[0].type === "message2")
+   // } //else if (data = aged) {
+        //.log(req.body.events[0].type === "message2")
+   // }
 
 
     // 文字列化したメッセージデータ
@@ -299,7 +299,7 @@ app.post("/webhook", function (req, res) {
 
     // エラーをハンドル
     request.on("error", (err) => {
-        console.error(err)
+        //.error(err)
     })
 
     // データを送信
@@ -309,7 +309,7 @@ app.post("/webhook", function (req, res) {
 })
 
 app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`)
+    //.log(`Example app listening at http://localhost:${PORT}`)
 })
 
 
