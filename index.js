@@ -40,8 +40,19 @@ app.get("/", (req, res) => {
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     // ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    console.log(req.body.events[0].type === "message")    
-    console.log(req.body.events[0])
+    console.log(req.body.events[0].type === "message")
+    const age = console.log(req.body.events[0])
+    if (data = low) {
+        console.log(req.body.events[0].type === "message2")
+    } else if (data = middle) {
+        console.log(req.body.events[0].type === "message2")
+    } else if (data = high) {
+        console.log(req.body.events[0].type === "message2")
+    } else if (data = aged) {
+        console.log(req.body.events[0].type === "message2")
+    }
+
+
     // 文字列化したメッセージデータ
     const dataString = JSON.stringify({
         replyToken: req.body.events[0].replyToken,
@@ -100,7 +111,7 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "10~20代",
-                                    "data": "low",
+                                    "data": "young",
                                     "displayText": "10~20代"
                                 }
                             },
@@ -135,7 +146,7 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "60代以上",
-                                    "data": "age60",
+                                    "data": "aged",
                                     "displayText": "60代以上"
                                 }
                             }
@@ -152,6 +163,116 @@ app.post("/webhook", function (req, res) {
 
         ]
     })
+
+
+
+    const dataString2 = JSON.stringify({
+        replyToken: req.body.events[0].replyToken,
+
+        messages2: [
+            {
+                "type": "bubble",
+                "hero": {
+                    "type": "image",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                    "size": "full",
+                    "aspectRatio": "20:13",
+                    "aspectMode": "cover",
+                    "action": {
+                        "type": "uri",
+                        "uri": "http://linecorp.com/"
+                    }
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "何人で観光しますか？",
+                            "weight": "bold",
+                            "size": "xl",
+                            "margin": "none",
+                            "align": "center"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "baseline",
+                            "margin": "md",
+                            "contents": []
+                        }
+                    ],
+                    "borderColor": "#696969",
+                    "cornerRadius": "30px"
+                },
+                "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                        {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                                "type": "postback",
+                                "label": "1人",
+                                "data": "solo",
+                                "displayText": "1人"
+                            }
+                        },
+                        {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                                "type": "postback",
+                                "label": "2人",
+                                "data": "duet",
+                                "displayText": "2人"
+                            }
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "margin": "sm"
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "postback",
+                                "label": "3~5人",
+                                "data": "trio",
+                                "displayText": "3~5人"
+                            }
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "postback",
+                                "label": "5人以上",
+                                "data": "quintet",
+                                "displayText": "5人以上"
+                            }
+                        }
+                    ],
+                    "flex": 0
+                }
+            }
+        ]
+
+
+    })
+
+
+
+
+
+
+
+
+
 
     // リクエストヘッダー
     const headers = {
