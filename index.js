@@ -39,19 +39,18 @@ app.get("/", (req, res) => {
 
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
-    // ユーザーがボットにメッセージを送った場合、返信メッセージを送る
+    //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     const age = console.log(req.body.events[0])
-    console.log(postback.data)
-    //if (data = young) {
-        //console.log(req.body.events[0].type === "message2")
-    //} //else if (data = middle) {
-        //.log(req.body.events[0].type === "message2")
-   // } //else if (data = high) {
-        //.log(req.body.events[0].type === "message2")
-   // } //else if (data = aged) {
-        //.log(req.body.events[0].type === "message2")
-   // }
+    if (postback.data = young) {
+        console.log(req.body.events[0].type === "message2")
+    } else if (postback.data = middle) {
+        console.log(req.body.events[0].type === "message2")
+    } else if (postback.data = high) {
+        console.log(req.body.events[0].type === "message2")
+    } else if (postback.data = aged) {
+        console.log(req.body.events[0].type === "message2")
+    }
 
 
     // 文字列化したメッセージデータ
