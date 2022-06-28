@@ -42,6 +42,14 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
+
+ 
+            // Get key-value pairs.
+    const data = object.get("data");
+
+    console.log(data);
+
+    
 /*     if (postback.data = young) {
         console.log(req.body.events[0].type === "message2")
     } else if (postback.data = middle) {
