@@ -43,7 +43,7 @@ app.post("/webhook", function (req, res) {
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
 
-    const obj = JSON.parse(messages);
+/*     const obj = JSON.parse(messages);
     var i;
 
     for (i in data) {
@@ -51,7 +51,7 @@ app.post("/webhook", function (req, res) {
             console.log(data[i]);
         }
     }
-
+ */
 
     /*     var obj = JSON.parse(messages);
         console.log(obj);
