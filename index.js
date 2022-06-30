@@ -45,7 +45,7 @@ app.post("/webhook", function (req, res) {
     const age = req.body.events[0]
     
 
-    console.log(age.postback)
+    console.log(age.Object.values(postback))
     
 
 
