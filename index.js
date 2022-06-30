@@ -41,29 +41,11 @@ app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
-    console.log(req.body.events[0])
-
-/*     const obj = JSON.parse(messages);
-    var i;
-
-    for (i in data) {
-        if (data[i] instanceof Object) {
-            console.log(data[i]);
-        }
-    }
- */
-
-    /*     var obj = JSON.parse(messages);
-        console.log(obj);
+    const age = console.log(req.body.events[0])
     
-    
-    
-        const json_count = Object.keys(obj).length ;
-        console.log(json_count);
-     */
 
-    // Get key-value pairs.
-
+    console.log(age.type)
+    
 
 
 
