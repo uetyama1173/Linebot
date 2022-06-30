@@ -42,8 +42,11 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
-    const age = req.body.events[0].postback
-    console.log(age)
+    const age = req.body.events[0]
+    const agepostback = age.postback.data
+
+   
+
     
 
     
