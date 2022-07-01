@@ -47,15 +47,17 @@ app.post("/webhook", function (req, res) {
 
 
     //postback-data age 格納
-    console.log(Object.values(agepostback))
 
-/* 
-     if(age.indexOf('young') !== -1){
+    console.log(Object.values(agepostback))
+    const data1 = Object.values(agepostback)
+
+
+     if(data1.indexOf('young') !== -1){
 
      //console.log(req.body.events[0].type === "messages2")
      console.log("helloworld")
    
-    }  */
+    }  
     
 
 
