@@ -50,12 +50,12 @@ app.post("/webhook", function (req, res) {
     const age = (Object.values(agepostback));
 
 
-    if(age.indexOf('young') !== -1){
+/*     if(age.indexOf('young') !== -1){
 
      //console.log(req.body.events[0].type === "messages2")
      console.log("helloworld")
    
-    }
+    } */
     
 
 
