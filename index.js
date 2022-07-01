@@ -43,19 +43,19 @@ app.post("/webhook", function (req, res) {
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
     const agedata  = req.body.events[0]
-    const agepostback = console.log(agedata.postback)
+    const agepostback = agedata.postback
 
 
     //postback-data age 格納
-    const age = (Object.values(agepostback));
+    console.log(Object.values(agepostback))
 
-
+/* 
      if(age.indexOf('young') !== -1){
 
      //console.log(req.body.events[0].type === "messages2")
      console.log("helloworld")
    
-    } 
+    }  */
     
 
 
