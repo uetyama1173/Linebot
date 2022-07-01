@@ -43,7 +43,7 @@ app.post("/webhook", function (req, res) {
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
     const agepostbackdata  = req.body.events[0]
-    const agepostback= age.postback
+    const postback = age.postback
 
 
     //postback-data age 呼び出し
