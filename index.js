@@ -52,16 +52,12 @@ app.post("/webhook", function (req, res) {
     const data1 = Object.values(agepostback)
 
 
-    if (data1.indexOf('young') !== -1) {
+    //10^20代を選択した場合，次の質問へ移行．
 
-        console.log(req.body.events[0] === "message2")
-        
-        
+    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+
+        console.log("helloworld")
     }
-
-
-
-
 
 
 
