@@ -336,8 +336,10 @@ app.post("/webhook", function (req, res) {
     })
 
     // データを送信
-    request.write(dataString)   
+    request.write(dataString) 
+
     request.write(dataString2)
+    
     request.end()
 
 })
