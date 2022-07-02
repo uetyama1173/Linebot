@@ -56,7 +56,7 @@ app.post("/webhook", function (req, res) {
 
     if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-        console.log("helloworld")
+        console.log("message2")
     }
 
 
