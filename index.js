@@ -42,7 +42,7 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
-    const agedata  = req.body.events[0]
+    const agedata = req.body.events[0]
     const agepostback = agedata.postback
 
 
@@ -52,20 +52,20 @@ app.post("/webhook", function (req, res) {
     const data1 = Object.values(agepostback)
 
 
-     if(data1.indexOf('young') !== -1){
+    if (data1.indexOf('young') !== -1) {
 
-     console.log(req.body.events[0] === "message2")
-     //console.log("helloworld")
-   
-    }  
-    
+        console.log(req.body.events[0] === "message2")
+        //console.log("helloworld")
 
+    }
 
 
-    
 
-    
-    
+
+
+
+
+
 
 
 
@@ -200,93 +200,101 @@ app.post("/webhook", function (req, res) {
 
         messages2: [
             {
-                "type": "bubble",
-                "hero": {
-                    "type": "image",
-                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-                    "size": "full",
-                    "aspectRatio": "20:13",
-                    "aspectMode": "cover",
-                    "action": {
-                        "type": "uri",
-                        "uri": "http://linecorp.com/"
+
+                "type": "flex",
+                "altText": "this is a flex message",
+                "contents": {
+
+
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover",
+                        "action": {
+                            "type": "uri",
+                            "uri": "http://linecorp.com/"
+                        }
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "何人で観光しますか？",
+                                "weight": "bold",
+                                "size": "xl",
+                                "margin": "none",
+                                "align": "center"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "margin": "md",
+                                "contents": []
+                            }
+                        ],
+                        "borderColor": "#696969",
+                        "cornerRadius": "30px"
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "style": "link",
+                                "height": "sm",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "1人",
+                                    "data": "solo",
+                                    "displayText": "1人"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "style": "link",
+                                "height": "sm",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "2人",
+                                    "data": "duet",
+                                    "displayText": "2人"
+                                }
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [],
+                                "margin": "sm"
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "3~5人",
+                                    "data": "trio",
+                                    "displayText": "3~5人"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "5人以上",
+                                    "data": "quintet",
+                                    "displayText": "5人以上"
+                                }
+                            }
+                        ],
+                        "flex": 0
+
                     }
-                },
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "何人で観光しますか？",
-                            "weight": "bold",
-                            "size": "xl",
-                            "margin": "none",
-                            "align": "center"
-                        },
-                        {
-                            "type": "box",
-                            "layout": "baseline",
-                            "margin": "md",
-                            "contents": []
-                        }
-                    ],
-                    "borderColor": "#696969",
-                    "cornerRadius": "30px"
-                },
-                "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "style": "link",
-                            "height": "sm",
-                            "action": {
-                                "type": "postback",
-                                "label": "1人",
-                                "data": "solo",
-                                "displayText": "1人"
-                            }
-                        },
-                        {
-                            "type": "button",
-                            "style": "link",
-                            "height": "sm",
-                            "action": {
-                                "type": "postback",
-                                "label": "2人",
-                                "data": "duet",
-                                "displayText": "2人"
-                            }
-                        },
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [],
-                            "margin": "sm"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "3~5人",
-                                "data": "trio",
-                                "displayText": "3~5人"
-                            }
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "5人以上",
-                                "data": "quintet",
-                                "displayText": "5人以上"
-                            }
-                        }
-                    ],
-                    "flex": 0
                 }
             }
         ]
