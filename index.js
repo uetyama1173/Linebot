@@ -56,7 +56,7 @@ app.post("/webhook", function (req, res) {
 
     if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-        console.log(req2.body2)
+        console.log(req.body)
         //どうやってライン上でJSONデータを出力するのだろう．
     }
 
@@ -193,9 +193,9 @@ app.post("/webhook", function (req, res) {
 
 
     const dataString2 = JSON.stringify({
-        replyToken: req2.body2.events[0].replyToken,
+        replyToken: req.body.events[0].replyToken,
 
-        messages2: [
+        messages: [
             {
 
                 "type": "flex",
@@ -337,9 +337,10 @@ app.post("/webhook", function (req, res) {
 
     // データを送信
     request.write(dataString) 
-
-    request.write(dataString2)
     
+    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+    request.write(dataString2)
+    }
     request.end()
 
 })
