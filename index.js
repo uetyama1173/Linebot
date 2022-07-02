@@ -49,7 +49,7 @@ app.post("/webhook", function (req, res) {
     //postback-data age 格納
 
    
-const agedayo =  console.log(req.body.events[0].postback.data)
+    console.log(req.body.events[0].postback.data)
     console.log(Object.values(agepostback))
     const data1 = Object.values(agepostback)
 
