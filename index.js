@@ -52,11 +52,11 @@ app.post("/webhook", function (req, res) {
     const data1 = Object.values(agepostback)
 
 
-    if (data1.indexOf('young')) {
+    if (data1.indexOf('young') !== -1) {
 
         //console.log(req.body.events[0] === "message2")
         console.log("helloworld")
-
+        
         
     }
 
