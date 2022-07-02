@@ -56,7 +56,7 @@ app.post("/webhook", function (req, res) {
 
     if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-        if (req.body.events[0].type === "message") {
+        (req.body.events[0].type === "message"); {
             // 文字列化したメッセージデータ
             const dataString = JSON.stringify({
               replyToken: req.body.events[0].replyToken,
@@ -70,7 +70,7 @@ app.post("/webhook", function (req, res) {
                   "text": "May I help you?"
                 }
               ]
-            })
+            })}
         //どうやってライン上でJSONデータを出力するのだろう．
     }
 
