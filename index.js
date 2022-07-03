@@ -46,7 +46,7 @@ app.post("/webhook", function (req, res) {
     const agepostback = agedata.postback
 
 
-    //postback-data age 格納
+    //const judgeで判定を行い，postback(message以外のタイプ)なら下記の処理を行う．
     if (judge === false) {
         console.log(Object.values(agepostback))
         const data1 = Object.values(agepostback)
