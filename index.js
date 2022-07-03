@@ -52,9 +52,9 @@ app.post("/webhook", function (req, res) {
     const data1 = Object.values(agepostback)
 
 
-    //10^20代を選択した場合，次の質問へ移行．
+    //年代を選択した場合，次の質問へ移行．
 
-    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == "message") {
 
         console.log(req.body)
 
@@ -337,11 +337,8 @@ app.post("/webhook", function (req, res) {
     })
 
     // データを送信
-    request.write(dataString) 
-    
-    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
-    request.write(dataString2)
-    }
+    request.write(dataString)
+
     request.end()
 
 })
