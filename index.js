@@ -47,12 +47,12 @@ app.post("/webhook", function (req, res) {
 
 
     //const judgeで判定を行い，postback(message以外のタイプ)なら下記の処理を行う．
-    if (judge === false) {
+    if (judge == false) {
         console.log(Object.values(agepostback))
         const data1 = Object.values(agepostback)
 
 
-        //10^20代を選択した場合，次の質問へ移行．
+        //年代を選択した場合，次の質問へ移行．
 
         if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
