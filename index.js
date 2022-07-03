@@ -38,9 +38,10 @@ app.get("/", (req, res) => {
 
 
 app.post("/webhook", function (req, res) {
+
+    console.log(req.body)
     res.send("HTTP POST request sent to the webhook URL!")
     //↑ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    console.log(res.send)
     
     const judge = console.log(req.body.events[0].message.text == 'あああ')
     //このコマンドは 特定の文字列 がどうかを判定している 
