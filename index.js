@@ -183,7 +183,7 @@ app.post("/webhook", function (req, res) {
     const dataString2 = JSON.stringify({
         replyToken: req.body.events[0].replyToken,
 
-        messages[
+        messages: [
             {
 
                 "type": "flex",
