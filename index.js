@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
     res.sendStatus(200)
 })
 
-.get('/db', async (req, res) => {
+db.get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
       const result = await client.query('SELECT * FROM Users_table');
@@ -55,7 +55,7 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
-    console.log(req.body.source.userid)
+    console.log(req.body.source.userId)
  
 
 
