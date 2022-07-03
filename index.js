@@ -40,25 +40,27 @@ app.get("/", (req, res) => {
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    console.log(req.body.events[0].type === "message")
+    const judge = console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
     const agedata = req.body.events[0]
     const agepostback = agedata.postback
 
 
     //postback-data age 格納
+    if (judge === false) {
+        console.log(Object.values(agepostback))
+        const data1 = Object.values(agepostback)
 
-    console.log(Object.values(agepostback))
-    const data1 = Object.values(agepostback)
 
+        //10^20代を選択した場合，次の質問へ移行．
 
-    //10^20代を選択した場合，次の質問へ移行．
+        if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+            console.log(req.body)
 
-        console.log(req.body)
+            //どうやってライン上でJSONデータを出力するのだろう．
+        }
 
-        //どうやってライン上でJSONデータを出力するのだろう．
     }
 
 
@@ -319,7 +321,7 @@ app.post("/webhook", function (req, res) {
     })
 
     // データを送信
-    request.write(dataString) 
+    request.write(dataString)
     request.end()
 
 })
