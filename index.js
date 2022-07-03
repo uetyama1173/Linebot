@@ -7,10 +7,9 @@ const { Client } = require('pg');
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
+    ssl: true
 });
+
 
 client.connect();
 
@@ -36,17 +35,35 @@ app.get("/", (req, res) => {
     res.sendStatus(200)
 })
 
+.get('/db', async (req, res) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query('SELECT * FROM Users_table');
+     //ここにuseeid を入れる res.send(req.body)
+      const results = { 'results': (result) ? result.rows : null};
+      res.render('pages/db', results );
+      client.release();
+    } catch (err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  })
+
 
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
+    console.log(req.body.source.userid)
  
 
 
     //const judgeで判定を行い，postback(message以外のタイプ)なら下記の処理を行う．
     if (req.body.events[0].type === "postback") {
+
+        //ID取得を行う．
+
 
         const agedata = req.body.events[0]
         const agepostback = agedata.postback
