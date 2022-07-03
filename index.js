@@ -42,13 +42,16 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
+
+   
+
     const agedata = req.body.events[0]
     const agepostback = agedata.postback
 
 
     //postback-data age 格納
 
-    console.log(Object.values(agepostback))
+/*     console.log(Object.values(agepostback))
     const data1 = Object.values(agepostback)
 
 
@@ -59,25 +62,9 @@ app.post("/webhook", function (req, res) {
         console.log(req.body)
 
         //どうやってライン上でJSONデータを出力するのだろう．
-    }
+    } */
 
 
-
-
-
-
-
-
-
-    /*     if (postback.data = young) {
-            console.log(req.body.events[0].type === "message2")
-        } else if (postback.data = middle) {
-            console.log(req.body.events[0].type === "message2")
-        } else if (postback.data = high) {
-            console.log(req.body.events[0].type === "message2")
-        } else if (postback.data = aged) {
-            console.log(req.body.events[0].type === "message2")
-        } */
 
 
     // 文字列化したメッセージデータ
