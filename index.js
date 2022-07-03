@@ -41,44 +41,43 @@ app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
-   const huma = console.log(req.body.events[0])
-
+    console.log(req.body.events[0])
+    const agedata = req.body.events[0]
+    const agepostback = agedata.postback
 
 
     //postback-data age 格納
-    if (huma.indexOf('postback') == -1) {
 
-        console.log = (req.body.events[0].postback.data.scenario)
+    console.log(Object.values(agepostback))
+    const data1 = Object.values(agepostback)
 
-    }
 
     //10^20代を選択した場合，次の質問へ移行．
 
-    /*  if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
- 
-         console.log(req.body)
- 
- 
-         //どうやってライン上でJSONデータを出力するのだろう．
-     }
-  
- 
- 
- 
- 
- 
- 
- 
- 
-     /*     if (postback.data = young) {
-             console.log(req.body.events[0].type === "message2")
-         } else if (postback.data = middle) {
-             console.log(req.body.events[0].type === "message2")
-         } else if (postback.data = high) {
-             console.log(req.body.events[0].type === "message2")
-         } else if (postback.data = aged) {
-             console.log(req.body.events[0].type === "message2")
-         } */
+    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+
+        console.log(req.body)
+
+        //どうやってライン上でJSONデータを出力するのだろう．
+    }
+
+
+
+
+
+
+
+
+
+    /*     if (postback.data = young) {
+            console.log(req.body.events[0].type === "message2")
+        } else if (postback.data = middle) {
+            console.log(req.body.events[0].type === "message2")
+        } else if (postback.data = high) {
+            console.log(req.body.events[0].type === "message2")
+        } else if (postback.data = aged) {
+            console.log(req.body.events[0].type === "message2")
+        } */
 
 
     // 文字列化したメッセージデータ
@@ -139,10 +138,7 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "10~20代",
-                                    "data": {
-                                        scenario: 1,
-                                        answer: "young"
-                                    },
+                                    "data": "young",
                                     "displayText": "10~20代"
                                 }
                             },
@@ -153,10 +149,7 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "30~40代",
-                                    "data": {
-                                        scenario: 2,
-                                        answer: "middle"
-                                    },
+                                    "data": "middle",
                                     "displayText": "30~40代"
                                 }
                             },
@@ -171,10 +164,7 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "50~60代",
-                                    "data": {
-                                        scenario: 3,
-                                        answer: "high"
-                                    },
+                                    "data": "high",
                                     "displayText": "50~60代"
                                 }
                             },
@@ -183,10 +173,7 @@ app.post("/webhook", function (req, res) {
                                 "action": {
                                     "type": "postback",
                                     "label": "60代以上",
-                                    "data": {
-                                        scenario: 4,
-                                        answer: "aged"
-                                    },
+                                    "data": "aged",
                                     "displayText": "60代以上"
                                 }
                             }
@@ -350,7 +337,11 @@ app.post("/webhook", function (req, res) {
     })
 
     // データを送信
-    request.write(dataString)
+    request.write(dataString) 
+    
+    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+    request.write(dataString2)
+    }
     request.end()
 
 })
