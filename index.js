@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 
 app.post("/webhook", function (req, res) {
 
-    console.log(req.body)
+    if(req.body.events[0].message.text === 'あああ'){
     res.send("HTTP POST request sent to the webhook URL!")
     //↑ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     
@@ -65,6 +65,8 @@ app.post("/webhook", function (req, res) {
             console.log(messages[0].type)
 
         }
+    }}else{
+        console.log("error")
     }
 
 
