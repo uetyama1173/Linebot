@@ -42,12 +42,14 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     const judge = console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
-    const agedata = req.body.events[0]
-    const agepostback = agedata.postback
+ 
 
 
     //const judgeで判定を行い，postback(message以外のタイプ)なら下記の処理を行う．
     if (judge == false) {
+
+        const agedata = req.body.events[0]
+        const agepostback = agedata.postback
         console.log(Object.values(agepostback))
         const data1 = Object.values(agepostback)
 
