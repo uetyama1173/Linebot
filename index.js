@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
     res.sendStatus(200)
 })
 
-db.get('/db', async (req, res) => {
+client.get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
       const result = await client.query('SELECT * FROM Users_table');
