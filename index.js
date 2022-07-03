@@ -59,7 +59,7 @@ app.post("/webhook", function (req, res) {
 
         if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-            console.log(req.body)
+            console.log(messages[0].type)
 
         }
     }
@@ -308,7 +308,7 @@ app.post("/webhook", function (req, res) {
         "path": "/v2/bot/message/reply",
         "method": "POST",
         "headers": headers,
-        "body": dataString
+        "body": dataString,
     }
 
     // リクエストの定義
