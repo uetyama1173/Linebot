@@ -46,7 +46,7 @@ app.post("/webhook", function (req, res) {
 
 
     //const judgeで判定を行い，postback(message以外のタイプ)なら下記の処理を行う．
-    if (judge == false) {
+    if (req.body.events[0].type === "postback") {
 
         const agedata = req.body.events[0]
         const agepostback = agedata.postback
@@ -56,12 +56,11 @@ app.post("/webhook", function (req, res) {
 
         //年代を選択した場合，次の質問へ移行．
 
-        if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+    /*     if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-            console.log(req.body)
 
             //どうやってライン上でJSONデータを出力するのだろう．
-        }
+        } */
 
     }
 
