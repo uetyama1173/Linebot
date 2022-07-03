@@ -141,7 +141,7 @@ app.post("/webhook", function (req, res) {
                                     "label": "10~20代",
                                     "data": {
                                         scenario: 1,
-                                        answer: young
+                                        answer: "young"
                                       },
                                     "displayText": "10~20代"
                                 }
@@ -155,7 +155,7 @@ app.post("/webhook", function (req, res) {
                                     "label": "30~40代",
                                     "data": {
                                         scenario: 2,
-                                        answer: middle
+                                        answer: "middle"
                                       },
                                     "displayText": "30~40代"
                                 }
@@ -173,7 +173,7 @@ app.post("/webhook", function (req, res) {
                                     "label": "50~60代",
                                     "data": {
                                         scenario: 3,
-                                        answer: high
+                                        answer: "high"
                                       },
                                     "displayText": "50~60代"
                                 }
@@ -185,7 +185,7 @@ app.post("/webhook", function (req, res) {
                                     "label": "60代以上",
                                     "data": {
                                         scenario: 4,
-                                        answer: aged
+                                        answer: "aged"
                                       },
                                     "displayText": "60代以上"
                                 }
