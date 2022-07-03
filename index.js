@@ -46,7 +46,7 @@ app.post("/webhook", function (req, res) {
 
 
     //postback-data age 格納
-    if (str.match(/postback/)) {
+    if (req.body.events[0].match(/postback/)) {
 
         const agedata = (req.body.events[0].postback.data.scenario)
 
