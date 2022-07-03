@@ -40,9 +40,9 @@ app.get("/", (req, res) => {
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    const judge = console.log(req.body[0].events[0].type === "message")
-    console.log(req.body[0].events[0])
-    const agedata = req.body[0].events[0]
+    const judge = console.log(req.body.events[0].type === "message")
+    console.log(req.body.events[0])
+    const agedata = req.body.events[0]
     const agepostback = agedata.postback
 
 
@@ -56,7 +56,7 @@ app.post("/webhook", function (req, res) {
 
         if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-            console.log(req.body[1])
+            console.log(req.body)
 
             //どうやってライン上でJSONデータを出力するのだろう．
         }
@@ -66,7 +66,7 @@ app.post("/webhook", function (req, res) {
 
     // 文字列化したメッセージデータ
     const dataString = JSON.stringify({
-        replyToken: req.body[0].events[0].replyToken,
+        replyToken: req.body.events[0].replyToken,
 
         messages: [
             {
@@ -178,7 +178,7 @@ app.post("/webhook", function (req, res) {
 
 
     const dataString2 = JSON.stringify({
-        replyToken: req.body[1].events[0].replyToken,
+        replyToken: req.body.events[0].replyToken,
 
         messages: [
             {
@@ -305,10 +305,8 @@ app.post("/webhook", function (req, res) {
         "path": "/v2/bot/message/reply",
         "method": "POST",
         "headers": headers,
-        "body": [dataString,dataString2]
+        "body": dataString
     }
-
-    c
 
     // リクエストの定義
     const request = https.request(webhookOptions, (res) => {
@@ -324,8 +322,6 @@ app.post("/webhook", function (req, res) {
 
     // データを送信
     request.write(dataString)
-    request.write(dataString2)
-    
     request.end()
 
 })
@@ -333,5 +329,4 @@ app.post("/webhook", function (req, res) {
 app.listen(PORT, () => {
     //.log(`Example app listening at http://localhost:${PORT}`)
 })
-
 
