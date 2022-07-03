@@ -38,30 +38,32 @@ app.get("/", (req, res) => {
 
 
 app.post("/webhook", function (req, res) {
-   // res.send("HTTP POST request sent to the webhook URL!")
-    //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    //↓ このコマンドは 特定の文字列 がどうかを判定している 
-    const judge = console.log(req.body.events[0].message.text == 'あああ')
+    if ((res.body.events[0].message.text == 'あああ')) {
+        res.send("HTTP POST request sent to the webhook URL!")
+        //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
+        //↓ このコマンドは 特定の文字列 がどうかを判定している 
+        const judge = console.log(req.body.events[0].message.text == 'あああ')
 
-    console.log(req.body.events[0])
-
-
-    if (req.body.events[0].type === "postback") {
-        const agedata = req.body.events[0]
-        const agepostback = agedata.postback
+        console.log(req.body.events[0])
 
 
-        //postback-data age 格納
-        console.log(Object.values(agepostback))
-        const data1 = Object.values(agepostback)
+        if (req.body.events[0].type === "postback") {
+            const agedata = req.body.events[0]
+            const agepostback = agedata.postback
 
 
-        //年代を選択した場合，次の質問へ移行．
+            //postback-data age 格納
+            console.log(Object.values(agepostback))
+            const data1 = Object.values(agepostback)
 
-        if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-            console.log(messages[0].type)
+            //年代を選択した場合，次の質問へ移行．
 
+            if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+
+                console.log(messages[0].type)
+
+            }
         }
     }
 
