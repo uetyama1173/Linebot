@@ -140,7 +140,7 @@ app.post("/webhook", function (req, res) {
                                     "type": "postback",
                                     "label": "10~20代",
                                     "data": {
-                                        scenario: 1,
+                                        scenario: "1",
                                         answer: "young"
                                       },
                                     "displayText": "10~20代"
