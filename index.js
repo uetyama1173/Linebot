@@ -42,43 +42,43 @@ app.post("/webhook", function (req, res) {
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
- 
+
 
 
     //postback-data age 格納
+    if (str.match(/postback/)) {
 
-   
-    const agedata = (req.body.events[0].postback.data.scenario)
-    
+        const agedata = (req.body.events[0].postback.data.scenario)
 
+    }
 
     //10^20代を選択した場合，次の質問へ移行．
 
-   /*  if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
-
-        console.log(req.body)
-
-
-        //どうやってライン上でJSONデータを出力するのだろう．
-    }
+    /*  if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
  
-
-
-
-
-
-
-
-
-    /*     if (postback.data = young) {
-            console.log(req.body.events[0].type === "message2")
-        } else if (postback.data = middle) {
-            console.log(req.body.events[0].type === "message2")
-        } else if (postback.data = high) {
-            console.log(req.body.events[0].type === "message2")
-        } else if (postback.data = aged) {
-            console.log(req.body.events[0].type === "message2")
-        } */
+         console.log(req.body)
+ 
+ 
+         //どうやってライン上でJSONデータを出力するのだろう．
+     }
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     /*     if (postback.data = young) {
+             console.log(req.body.events[0].type === "message2")
+         } else if (postback.data = middle) {
+             console.log(req.body.events[0].type === "message2")
+         } else if (postback.data = high) {
+             console.log(req.body.events[0].type === "message2")
+         } else if (postback.data = aged) {
+             console.log(req.body.events[0].type === "message2")
+         } */
 
 
     // 文字列化したメッセージデータ
@@ -142,7 +142,7 @@ app.post("/webhook", function (req, res) {
                                     "data": {
                                         scenario: 1,
                                         answer: "young"
-                                      },
+                                    },
                                     "displayText": "10~20代"
                                 }
                             },
@@ -156,7 +156,7 @@ app.post("/webhook", function (req, res) {
                                     "data": {
                                         scenario: 2,
                                         answer: "middle"
-                                      },
+                                    },
                                     "displayText": "30~40代"
                                 }
                             },
@@ -174,7 +174,7 @@ app.post("/webhook", function (req, res) {
                                     "data": {
                                         scenario: 3,
                                         answer: "high"
-                                      },
+                                    },
                                     "displayText": "50~60代"
                                 }
                             },
@@ -186,7 +186,7 @@ app.post("/webhook", function (req, res) {
                                     "data": {
                                         scenario: 4,
                                         answer: "aged"
-                                      },
+                                    },
                                     "displayText": "60代以上"
                                 }
                             }
@@ -350,7 +350,7 @@ app.post("/webhook", function (req, res) {
     })
 
     // データを送信
-    request.write(dataString) 
+    request.write(dataString)
     request.end()
 
 })
