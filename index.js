@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    const judge = console.log(req.body.events[0].type === "message")
+    console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
  
 
@@ -56,11 +56,14 @@ app.post("/webhook", function (req, res) {
 
         //年代を選択した場合，次の質問へ移行．
 
-    /*     if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+         if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+
+
+            console.log(dataString)
 
 
             //どうやってライン上でJSONデータを出力するのだろう．
-        } */
+        } 
 
     }
 
