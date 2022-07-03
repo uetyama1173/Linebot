@@ -38,301 +38,289 @@ app.get("/", (req, res) => {
 
 
 app.post("/webhook", function (req, res) {
-
-    if(req.body.events[0].message.text === 'あああ'){
     res.send("HTTP POST request sent to the webhook URL!")
-    //↑ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    
-    const judge = console.log(req.body.events[0].message.text == 'あああ')
-    //このコマンドは 特定の文字列 がどうかを判定している 
+    //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
+    console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
+    const agedata = req.body.events[0]
+    const agepostback = agedata.postback
 
 
-    if (req.body.events[0].type === "postback") {
-        const agedata = req.body.events[0]
-        const agepostback = agedata.postback
+    //postback-data age 格納
+
+    console.log(Object.values(agepostback))
+    const data1 = Object.values(agepostback)
 
 
-        //postback-data age 格納
-        console.log(Object.values(agepostback))
-        const data1 = Object.values(agepostback)
+    //10^20代を選択した場合，次の質問へ移行．
 
+    if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-        //年代を選択した場合，次の質問へ移行．
+        console.log(req.body)
 
-        if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
-
-            console.log(messages[0].type)
-
-        }
-    }}else{
-        console.log("error")
+        //どうやってライン上でJSONデータを出力するのだろう．
     }
-
-
-
 
 
     // 文字列化したメッセージデータ
     const dataString = JSON.stringify({
-    replyToken: req.body.events[0].replyToken,
+        replyToken: req.body.events[0].replyToken,
 
-    messages: [
-        {
+        messages: [
+            {
 
-            "type": "flex",
-            "altText": "this is a flex message",
-            "contents": {
+                "type": "flex",
+                "altText": "this is a flex message",
+                "contents": {
 
 
-                "type": "bubble",
-                "hero": {
-                    "type": "image",
-                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-                    "size": "full",
-                    "aspectRatio": "20:13",
-                    "aspectMode": "cover",
-                    "action": {
-                        "type": "uri",
-                        "uri": "http://linecorp.com/"
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover",
+                        "action": {
+                            "type": "uri",
+                            "uri": "http://linecorp.com/"
+                        }
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "年代を教えて下さい",
+                                "weight": "bold",
+                                "size": "xl",
+                                "margin": "none",
+                                "align": "center"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "margin": "md",
+                                "contents": []
+                            }
+                        ],
+                        "borderColor": "#696969",
+                        "cornerRadius": "30px"
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "style": "link",
+                                "height": "sm",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "10~20代",
+                                    "data": "young",
+                                    "displayText": "10~20代"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "style": "link",
+                                "height": "sm",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "30~40代",
+                                    "data": "middle",
+                                    "displayText": "30~40代"
+                                }
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [],
+                                "margin": "sm"
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "50~60代",
+                                    "data": "high",
+                                    "displayText": "50~60代"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "60代以上",
+                                    "data": "aged",
+                                    "displayText": "60代以上"
+                                }
+                            }
+                        ],
+                        "flex": 0
                     }
-                },
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "年代を教えて下さい",
-                            "weight": "bold",
-                            "size": "xl",
-                            "margin": "none",
-                            "align": "center"
-                        },
-                        {
-                            "type": "box",
-                            "layout": "baseline",
-                            "margin": "md",
-                            "contents": []
-                        }
-                    ],
-                    "borderColor": "#696969",
-                    "cornerRadius": "30px"
-                },
-                "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "style": "link",
-                            "height": "sm",
-                            "action": {
-                                "type": "postback",
-                                "label": "10~20代",
-                                "data": "young",
-                                "displayText": "10~20代"
-                            }
-                        },
-                        {
-                            "type": "button",
-                            "style": "link",
-                            "height": "sm",
-                            "action": {
-                                "type": "postback",
-                                "label": "30~40代",
-                                "data": "middle",
-                                "displayText": "30~40代"
-                            }
-                        },
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [],
-                            "margin": "sm"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "50~60代",
-                                "data": "high",
-                                "displayText": "50~60代"
-                            }
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "60代以上",
-                                "data": "aged",
-                                "displayText": "60代以上"
-                            }
-                        }
-                    ],
-                    "flex": 0
                 }
+
             }
 
-        }
 
 
 
 
-
-    ]
-})
-
-
-
-const dataString2 = JSON.stringify({
-    replyToken: req.body.events[0].replyToken,
-
-    messages: [
-        {
-
-            "type": "flex",
-            "altText": "this is a flex message",
-            "contents": {
-
-
-                "type": "bubble",
-                "hero": {
-                    "type": "image",
-                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-                    "size": "full",
-                    "aspectRatio": "20:13",
-                    "aspectMode": "cover",
-                    "action": {
-                        "type": "uri",
-                        "uri": "http://linecorp.com/"
-                    }
-                },
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "何人で観光しますか？",
-                            "weight": "bold",
-                            "size": "xl",
-                            "margin": "none",
-                            "align": "center"
-                        },
-                        {
-                            "type": "box",
-                            "layout": "baseline",
-                            "margin": "md",
-                            "contents": []
-                        }
-                    ],
-                    "borderColor": "#696969",
-                    "cornerRadius": "30px"
-                },
-                "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "style": "link",
-                            "height": "sm",
-                            "action": {
-                                "type": "postback",
-                                "label": "1人",
-                                "data": "solo",
-                                "displayText": "1人"
-                            }
-                        },
-                        {
-                            "type": "button",
-                            "style": "link",
-                            "height": "sm",
-                            "action": {
-                                "type": "postback",
-                                "label": "2人",
-                                "data": "duet",
-                                "displayText": "2人"
-                            }
-                        },
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [],
-                            "margin": "sm"
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "3~5人",
-                                "data": "trio",
-                                "displayText": "3~5人"
-                            }
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "5人以上",
-                                "data": "quintet",
-                                "displayText": "5人以上"
-                            }
-                        }
-                    ],
-                    "flex": 0
-
-                }
-            }
-        }
-    ]
-
-
-})
-
-
-
-
-
-
-
-
-
-
-// リクエストヘッダー
-const headers = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + TOKEN
-}
-
-// リクエストに渡すオプション
-const webhookOptions = {
-    "hostname": "api.line.me",
-    "path": "/v2/bot/message/reply",
-    "method": "POST",
-    "headers": headers,
-    "body": dataString,
-}
-
-// リクエストの定義
-const request = https.request(webhookOptions, (res) => {
-    res.on("data", (d) => {
-        process.stdout.write(d)
+        ]
     })
-})
 
-// エラーをハンドル
-request.on("error", (err) => {
-    //.error(err)
-})
 
-// データを送信
-request.write(dataString)
 
-request.end()
+    const dataString2 = JSON.stringify({
+        replyToken: req.body.events[0].replyToken,
+
+        messages: [
+            {
+
+                "type": "flex",
+                "altText": "this is a flex message",
+                "contents": {
+
+
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "cover",
+                        "action": {
+                            "type": "uri",
+                            "uri": "http://linecorp.com/"
+                        }
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "何人で観光しますか？",
+                                "weight": "bold",
+                                "size": "xl",
+                                "margin": "none",
+                                "align": "center"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "margin": "md",
+                                "contents": []
+                            }
+                        ],
+                        "borderColor": "#696969",
+                        "cornerRadius": "30px"
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "style": "link",
+                                "height": "sm",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "1人",
+                                    "data": "solo",
+                                    "displayText": "1人"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "style": "link",
+                                "height": "sm",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "2人",
+                                    "data": "duet",
+                                    "displayText": "2人"
+                                }
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [],
+                                "margin": "sm"
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "3~5人",
+                                    "data": "trio",
+                                    "displayText": "3~5人"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "postback",
+                                    "label": "5人以上",
+                                    "data": "quintet",
+                                    "displayText": "5人以上"
+                                }
+                            }
+                        ],
+                        "flex": 0
+
+                    }
+                }
+            }
+        ]
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+    // リクエストヘッダー
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + TOKEN
+    }
+
+    // リクエストに渡すオプション
+    const webhookOptions = {
+        "hostname": "api.line.me",
+        "path": "/v2/bot/message/reply",
+        "method": "POST",
+        "headers": headers,
+        "body": dataString
+    }
+
+    // リクエストの定義
+    const request = https.request(webhookOptions, (res) => {
+        res.on("data", (d) => {
+            process.stdout.write(d)
+        })
+    })
+
+    // エラーをハンドル
+    request.on("error", (err) => {
+        //.error(err)
+    })
+
+    // データを送信
+    request.write(dataString) 
+    request.end()
 
 })
 
