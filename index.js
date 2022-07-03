@@ -41,12 +41,12 @@ app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
     console.log(req.body.events[0].type === "message")
-    console.log(req.body.events[0])
+   const huma = console.log(req.body.events[0])
 
 
 
     //postback-data age 格納
-    if (req.body.match(/postback/)) {
+    if (huma.match(/postback/)) {
 
         const agedata = (req.body.events[0].postback.data.scenario)
 
