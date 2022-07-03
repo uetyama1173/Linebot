@@ -40,8 +40,9 @@ app.get("/", (req, res) => {
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
+    //↓ このコマンドでJSONdataを出力している
     console.log(req.body.events[0].type === "message")
-    //console.log(req.body.events[0])
+    console.log(req.body.events[0])
 
       
    /*  const agedata = req.body.events[0]
