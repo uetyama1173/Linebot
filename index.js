@@ -3,12 +3,13 @@ const express = require("express")
 const app = express()
 
 //postgresqlを接続するコマンド
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+const { Client } = require('pg');
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 client.connect();
@@ -35,51 +36,30 @@ app.get("/", (req, res) => {
     res.sendStatus(200)
 })
 
-app.get('/db', async (req, res) => {
-    try {
-      const client = await pool.connect();
-      const result = await client.query('SELECT * FROM Users_table');
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('pages/db', results );
-      client.release();
-    } catch (err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
-  })
-
-
 
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!")
     //ユーザーがボットにメッセージを送った場合、返信メッセージを送る
-    console.log(req.body.events[0].type === "message")
+    const judge = console.log(req.body.events[0].type === "message")
     console.log(req.body.events[0])
- 
+    const agedata = req.body.events[0]
+    const agepostback = agedata.postback
 
 
     //const judgeで判定を行い，postback(message以外のタイプ)なら下記の処理を行う．
-    if (req.body.events[0].type === "postback") {
-
-        //ID取得を行う．
-
-
-        const agedata = req.body.events[0]
-        const agepostback = agedata.postback
+    if (judge === false) {
         console.log(Object.values(agepostback))
         const data1 = Object.values(agepostback)
 
 
-        //年代を選択した場合，次の質問へ移行．
+        //10^20代を選択した場合，次の質問へ移行．
 
-         if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
+        if (data1.indexOf('young') || data1.indexOf('middle') || data1.indexOf('high') || data1.indexOf('aged') == -1) {
 
-
-            console.log(req.body.events[0].replyToken)
-
+            console.log(req.body)
 
             //どうやってライン上でJSONデータを出力するのだろう．
-        } 
+        }
 
     }
 
