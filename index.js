@@ -3,13 +3,13 @@ const express = require("express")
 const app = express()
 
 //postgresqlを接続するコマンド
-const { Client } = require('pg');
-
-const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
-
 
 client.connect();
 
@@ -39,7 +39,6 @@ app.get('/db', async (req, res) => {
     try {
       const client = await pool.connect();
       const result = await client.query('SELECT * FROM Users_table');
-     //ここにuseeid を入れる res.send(req.body)
       const results = { 'results': (result) ? result.rows : null};
       res.render('pages/db', results );
       client.release();
@@ -48,6 +47,7 @@ app.get('/db', async (req, res) => {
       res.send("Error " + err);
     }
   })
+
 
 
 app.post("/webhook", function (req, res) {
